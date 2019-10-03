@@ -18,7 +18,7 @@ class Landing extends Component {
             <div className="container">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <h1 className="display-3 mb-4">Valhalla</h1>
+                  <h1 className="display-4 mb-4">A new Adventure Awaits!</h1>
                   <p className="lead">
                     Join people from around the world in various tabletop
                     adventures!

@@ -1,0 +1,14 @@
+.navbar {
+    background-color: #043540;
+}
+
+li a {
+    color: white
+}
+
+.navbar-brand {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+
+}

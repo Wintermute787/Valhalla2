@@ -7,7 +7,10 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { clearCurrentProfile } from "./actions/profileActions";
 import { Provider } from "react-redux";
 import Navbar from "./components/layout/Navbar";
-import Landing from "./components/layout/Landing";
+import Landing from "./components/layout/landing/Landing";
+import Dashboard from "./components/dashboard/Dashboard";
+import PrivateRoute from "./components/common/PrivateRoute";
+import Register from "./components/auth/Register";
 import "./App.css";
 
 //check for token
@@ -38,6 +41,10 @@ class App extends Component {
         <Router>
           <Navbar />
           <Route exact path="/" component={Landing} />
+          <Route exact path="/register" component={Register} />
+          <Switch>
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          </Switch>
         </Router>
       </Provider>
     );

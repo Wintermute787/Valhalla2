@@ -3,7 +3,7 @@
     background: url('../assets/fantasyimage1.jpg') no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh;
+    height: 70vh;
     margin-top: -24px;
     margin-bottom: -50px;
 }
@@ -21,8 +21,8 @@
     height: 100%;
 }
 
-h1 {
-    color: white;
+/* h1 {
+    color: rgb(255, 255, 255);
     font-weight: bold;
     font-size: 5em;
     text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
@@ -39,4 +39,4 @@ p {
 .adventure-bold {
     color: #027373;
     text-decoration: underline;
-}
+} */

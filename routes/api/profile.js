@@ -117,13 +117,6 @@ router.post(
       profileFields.favoriteGames = req.body.favoriteGames.split(",");
     }
 
-    //social
-    profileFields.social = {};
-    if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
-    if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
-    if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
-    if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
-
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
         //update

@@ -20,20 +20,6 @@ const profileSchema = new Schema({
   location: {
     type: String
   },
-  social: {
-    youtube: {
-      type: String
-    },
-    facebook: {
-      type: String
-    },
-    twitter: {
-      type: String
-    },
-    instagram: {
-      type: String
-    }
-  },
   date: {
     type: Date,
     default: Date.now

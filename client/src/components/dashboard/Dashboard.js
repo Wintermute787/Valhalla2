@@ -1,5 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getCurrentProfile, deleteProfile } from "../../actions/profileActions";
 import styled from "styled-components";
+import Spinner from "../common/Spinner";
+import Profile from "../profile/Profile";
 import banner1 from "../../assets/fantasybanner3.jpg";
 
 const DashBody = styled.div`
@@ -22,7 +28,7 @@ const HeaderOne = styled.div`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr 
+  grid-template-columns: 2fr 2fr 
   grid-template-rows: 2fr 2fr ;
   grid-column-gap: 5em;
   grid-row-gap: 20px;
@@ -69,48 +75,82 @@ const HeaderText = styled.div`
 `;
 
 class Dashboard extends Component {
+  //loading in the current profile upon mounting the component
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+  onDeleteClick(e) {
+    this.props.deleteProfile();
+  }
   render() {
-    return (
-      <DashBody>
-        <HeaderOne></HeaderOne>
-        <Grid>
-          <Div1>
-            <Icon>
-              <i className="fas fa-sort-amount-up"></i>
-            </Icon>
-            <HeaderText>
-              <h1>Create your profile!</h1>
-              <botton type="button" className="btn btn-lg mt-4 btn-primary">
-                Create
-              </botton>
-            </HeaderText>
-          </Div1>
-          <Div2>
-            <Icon>
-              <i className="fas fa-marker"></i>
-            </Icon>
-            <HeaderText>
-              <h1>Make your Characters!</h1>
-              <botton type="button" className="btn btn-lg mt-4 btn-primary">
-                Characters
-              </botton>
-            </HeaderText>
-          </Div2>
-          <Div3>
-            <Icon>
-              <i className="fas fa-dice-d20"></i>
-            </Icon>
-            <HeaderText>
-              <h1>Find a game!</h1>
-              <botton type="button" className="btn btn-lg mt-4 btn-primary">
-                Games
-              </botton>
-            </HeaderText>
-          </Div3>
-        </Grid>
-      </DashBody>
-    );
+    const { user } = this.props.auth;
+    const { profile, loading } = this.props.profile;
+
+    let dashboardContent;
+
+    //in order for object keys to work I had to create a edgecase for if it is a null value
+    if (profile === null || loading) {
+      dashboardContent = <Spinner />;
+    } else {
+      //this is a method of creating a view for an account that has a profile, and one that doesnt
+      if (Object.keys(profile).length > 0) {
+        dashboardContent = <Profile />;
+      } else {
+        dashboardContent = (
+          <DashBody>
+            <HeaderOne></HeaderOne>
+            <Grid>
+              <Div1>
+                <Icon>
+                  <i className="fas fa-sort-amount-up"></i>
+                </Icon>
+                <HeaderText>
+                  <h1>Create your profile!</h1>
+                  <Link to="/create-profile">
+                    <button
+                      type="button"
+                      className="btn btn-lg mt-4 btn-primary"
+                    >
+                      Create
+                    </button>
+                  </Link>
+                </HeaderText>
+              </Div1>
+
+              <Div3>
+                <Icon>
+                  <i className="fas fa-dice-d20"></i>
+                </Icon>
+                <HeaderText>
+                  <h1>Find or create a game!</h1>
+                  <button type="button" className="btn btn-lg mt-4 btn-primary">
+                    Games
+                  </button>
+                </HeaderText>
+              </Div3>
+            </Grid>
+          </DashBody>
+        );
+      }
+    }
+
+    return <div>{dashboardContent}</div>;
   }
 }
 
-export default Dashboard;
+Dashboard.propTypes = {
+  getCurrentProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  deleteProfile: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile,
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { getCurrentProfile, deleteProfile }
+)(Dashboard);

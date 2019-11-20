@@ -55,7 +55,7 @@ class Navbar extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+        <nav className="navbar navbar-expand-sm navbar-dark bg-dark ">
           <div className="container">
             <Link className="navbar-brand" to="/">
               Valhalla
@@ -70,14 +70,7 @@ class Navbar extends Component {
             </button>
 
             <div className="collapse navbar-collapse" id="mobile-nav">
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <Link className="nav-link" to="/profiles">
-                    {" "}
-                    Users
-                  </Link>
-                </li>
-              </ul>
+              <ul className="navbar-nav mr-auto"></ul>
               {isAuthenticated ? authLinks : guestLinks}
             </div>
           </div>

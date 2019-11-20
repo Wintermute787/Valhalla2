@@ -1,0 +1,49 @@
+.wrapper {
+    background-color: #1a1a1d;
+    height: 100%;
+    padding: 1em;
+    position: relative;
+}
+
+.sidebar {
+    background-color: #043540;
+    height: 100vh;
+    padding: 1em;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.content {
+    background-color: #043540;
+    height: 100vh;
+    padding: 1em;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.d-block {
+    width: 60vh;
+}
+
+.username {
+    color: white;
+    text-align: center;
+}
+
+hr {
+    background-color: white;
+}
+
+.sidebar_icons {}
+
+i {
+    color: white;
+    text-align: center;
+    margin-left: 25%;
+}
+
+.sidebar_icons-wrapper {
+    height: 9em;
+    display: flex;
+    justify-content: center;
+}
